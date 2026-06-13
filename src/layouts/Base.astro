@@ -1,0 +1,123 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import Background from '../components/Background.astro';
+import ScrollRail from '../components/ScrollRail.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { profile } from '../data/site';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title,
+	description = `Leonardo Glorioso — Full-stack web developer in Cambridge, MA. Co-owner and developer at Night Network.`
+} = Astro.props;
+
+const pageTitle = title
+	? `${title} · Leonardo Glorioso`
+	: `Leonardo Glorioso — Full-stack web developer`;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+const personSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Person',
+	name: 'Leonardo Glorioso',
+	alternateName: 'Crllect',
+	url: Astro.site?.href,
+	jobTitle: 'Full-stack web developer',
+	email: `mailto:${profile.email}`,
+	address: {
+		'@type': 'PostalAddress',
+		addressLocality: 'Cambridge',
+		addressRegion: 'MA',
+		addressCountry: 'US'
+	},
+	alumniOf: 'Cambridge Rindge and Latin School',
+	sameAs: [
+		'https://github.com/crllect',
+		'https://gitlab.com/nightnetwork',
+		'https://github.com/Night-N3twork',
+		'https://night-x.com/'
+	]
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{pageTitle}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+		<link rel="icon" href="/assets/favicon.webp" type="image/webp" />
+		<link rel="icon" href="/assets/favicon.png" sizes="any" />
+		<meta name="theme-color" content="#14161f" />
+		<meta name="author" content="Leonardo Glorioso" />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content="/assets/logo.png" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={pageTitle} />
+		<meta name="twitter:description" content={description} />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Fraunces:ital,wght@1,400;1,500&display=swap"
+		/>
+
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify(personSchema)}
+		/>
+
+		<ClientRouter />
+
+		<noscript>
+			<style>
+				.reveal-init {
+					opacity: 1 !important;
+					transform: none !important;
+				}
+			</style>
+		</noscript>
+	</head>
+	<body>
+		<Background />
+		<ScrollRail />
+		<Nav />
+		<main>
+			<slot />
+		</main>
+		<Footer />
+
+		<script>
+			const flashCopied = (el: HTMLElement) => {
+				el.classList.add('copied');
+				setTimeout(() => el.classList.remove('copied'), 1400);
+			};
+
+			document.addEventListener('click', e => {
+				const target = (e.target as HTMLElement)?.closest<HTMLElement>(
+					'[data-copy]'
+				);
+				if (!target) return;
+				e.preventDefault();
+				navigator.clipboard
+					?.writeText(target.dataset.copy || '')
+					.then(() => flashCopied(target))
+					.catch(() => {});
+			});
+		</script>
+	</body>
+</html>

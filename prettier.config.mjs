@@ -10,6 +10,7 @@ const config = {
 	requirePragma: false,
 	insertPragma: false,
 	proseWrap: 'always',
+	plugins: ['prettier-plugin-astro'],
 	overrides: [
 		{
 			files: '**/*.astro',

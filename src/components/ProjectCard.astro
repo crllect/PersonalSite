@@ -1,0 +1,111 @@
+---
+import type { Project } from '../data/site';
+import Icon from './Icon.astro';
+
+interface Props {
+	project: Project;
+}
+const { project } = Astro.props;
+const primary = project.links[0];
+---
+
+<article class="glow-card project-card">
+	<div class="project-top">
+		<div>
+			<h3 class="project-name">{project.name}</h3>
+			<p class="project-role mono">{project.role}</p>
+		</div>
+		{
+			project.metric && (
+				<div class="project-metric">
+					<span class="gradient-text metric-value">
+						{project.metric.value}
+					</span>
+					<span class="metric-label">{project.metric.label}</span>
+				</div>
+			)
+		}
+	</div>
+
+	<p class="project-summary">{project.summary}</p>
+
+	<ul class="tag-row">
+		{project.tags.map(t => <li class="tag">{t}</li>)}
+	</ul>
+
+	<div class="project-foot">
+		<span class="project-period mono">{project.period}</span>
+		{
+			primary && (
+				<a
+					class="project-link"
+					href={primary.href}
+					target="_blank"
+					rel="noreferrer"
+				>
+					{primary.label}
+					<Icon name="arrow-up-right" size={15} />
+				</a>
+			)
+		}
+	</div>
+</article>
+
+<style>
+	.project-card {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		padding: 1.5rem;
+		height: 100%;
+	}
+	.project-top {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+	.project-name {
+		font-size: 1.3rem;
+	}
+	.project-role {
+		margin-top: 0.3rem;
+		font-size: 0.74rem;
+		letter-spacing: 0.05em;
+		color: var(--accent);
+	}
+	.project-metric {
+		text-align: right;
+		flex: none;
+	}
+	.metric-value {
+		display: block;
+		font-family: var(--font-sans);
+		font-weight: 700;
+		font-size: 1.5rem;
+		line-height: 1;
+	}
+	.metric-label {
+		font-size: 0.68rem;
+		color: var(--muted);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+	.project-summary {
+		color: var(--muted);
+		font-size: 0.96rem;
+		flex: 1;
+	}
+	.project-foot {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding-top: 0.4rem;
+		border-top: 1px solid var(--line);
+	}
+	.project-period {
+		font-size: 0.74rem;
+		color: var(--muted);
+	}
+</style>

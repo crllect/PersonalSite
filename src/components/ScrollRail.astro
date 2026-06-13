@@ -1,0 +1,113 @@
+<div class="scroller" aria-hidden="true" transition:persist="scroll-rail">
+	<div class="scrollerInner">
+		<div class="trackTop"></div>
+		<div class="thumb">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="22"
+				height="22"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			>
+				<path
+					d="M13.73 4a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
+				></path>
+			</svg>
+		</div>
+		<div class="trackBottom"></div>
+	</div>
+</div>
+
+<style>
+	.scroller {
+		position: fixed;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 60px;
+		height: 360px;
+		padding: 48px;
+		z-index: 40;
+		pointer-events: none;
+	}
+	.scrollerInner {
+		position: relative;
+		width: 2px;
+		height: 100%;
+		margin: 0 auto;
+	}
+	.trackTop,
+	.trackBottom {
+		position: absolute;
+		left: 50%;
+		width: 2px;
+		border-radius: 2px;
+		transform: translateX(-50%);
+	}
+	.trackTop {
+		top: 0;
+		height: 0;
+		background: var(--accent);
+	}
+	.trackBottom {
+		bottom: 0;
+		height: 100%;
+		background: color-mix(in oklab, var(--fg) 22%, transparent);
+	}
+	.thumb {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		width: 22px;
+		height: 22px;
+		transform: translate(-50%, -50%) rotate(180deg);
+		color: var(--accent);
+		animation-name: thumb-fall;
+		animation-timeline: scroll(block nearest);
+		animation-fill-mode: both;
+	}
+
+	@keyframes thumb-fall {
+		from {
+			top: 0%;
+		}
+		to {
+			top: 100%;
+		}
+	}
+
+	@media (max-width: 1200px) {
+		.scroller {
+			display: none;
+		}
+	}
+</style>
+
+<script>
+	const thumb = document.querySelector<HTMLElement>('.scroller .thumb');
+	const trackTop = document.querySelector<HTMLElement>('.scroller .trackTop');
+	const trackBottom = document.querySelector<HTMLElement>(
+		'.scroller .trackBottom'
+	);
+	const inner = document.querySelector<HTMLElement>(
+		'.scroller .scrollerInner'
+	);
+
+	if (thumb && trackTop && trackBottom && inner) {
+		const update = () => {
+			const h = inner.clientHeight;
+			if (!h) return;
+			const top = parseFloat(getComputedStyle(thumb).top) || 0;
+			const pct = Math.min(100, Math.max(0, (top / h) * 100));
+			trackTop.style.height = `calc(${pct}% - 16px)`;
+			trackBottom.style.height = `calc(${100 - pct}% - 16px)`;
+		};
+		update();
+		window.addEventListener('scroll', update, { passive: true });
+		window.addEventListener('resize', update);
+	}
+</script>

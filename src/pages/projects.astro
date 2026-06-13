@@ -1,0 +1,228 @@
+---
+import Base from '../layouts/Base.astro';
+import Reveal from '../components/Reveal.tsx';
+import SectionHeading from '../components/SectionHeading.astro';
+import Icon from '../components/Icon.astro';
+import { projects } from '../data/site';
+---
+
+<Base
+	title="Projects"
+	description="Projects by Leonardo Glorioso — Night Network, DaydreamX, Space, Aspine, and more."
+>
+	<section class="container section">
+		<Reveal client:load>
+			<SectionHeading title="Things I've built">
+				The fuller story behind my work — what each project is, what I
+				built, and where to find it.
+			</SectionHeading>
+		</Reveal>
+
+		<div class="project-list">
+			{
+				projects.map((p, i) => (
+					<Reveal client:visible delay={Math.min(i * 0.05, 0.2)}>
+						<article class="glow-card panel" id={p.slug}>
+							<header class="panel-head">
+								<div>
+									<h2 class="panel-name">{p.name}</h2>
+									<p class="panel-role mono">
+										{p.role} · {p.period}
+									</p>
+								</div>
+								{p.metric && (
+									<div class="panel-metric">
+										<span class="gradient-text panel-metric-value">
+											{p.metric.value}
+										</span>
+										<span class="panel-metric-label">
+											{p.metric.label}
+										</span>
+									</div>
+								)}
+							</header>
+
+							<div class="panel-body">
+								{p.description.map(d => (
+									<p>{d}</p>
+								))}
+							</div>
+
+							<div class="panel-cols">
+								<div>
+									<h3 class="panel-sub mono">What I built</h3>
+									<ul class="panel-highlights">
+										{p.highlights.map(h => (
+											<li>{h}</li>
+										))}
+									</ul>
+								</div>
+								<div>
+									<h3 class="panel-sub mono">Stack</h3>
+									<ul class="tag-row">
+										{p.tags.map(t => (
+											<li class="tag">{t}</li>
+										))}
+									</ul>
+									<div class="panel-links">
+										{p.links.map(l => (
+											<a
+												class="project-link"
+												href={l.href}
+												target="_blank"
+												rel="noreferrer"
+											>
+												{l.label}
+												<Icon
+													name="arrow-up-right"
+													size={15}
+												/>
+											</a>
+										))}
+									</div>
+								</div>
+							</div>
+						</article>
+					</Reveal>
+				))
+			}
+		</div>
+
+		<Reveal client:visible>
+			<div class="projects-foot">
+				<p class="mono">More on GitHub & GitLab.</p>
+				<div class="hero-actions">
+					<a
+						class="btn-ghost"
+						href="https://github.com/crllect"
+						target="_blank"
+						rel="noreferrer"
+					>
+						<Icon name="github" size={17} />
+						github.com/crllect
+					</a>
+					<a class="btn-primary" href="/contact">Get in touch</a>
+				</div>
+			</div>
+		</Reveal>
+	</section>
+</Base>
+
+<style>
+	.section {
+		padding-block: 7rem 4rem;
+	}
+	.project-list {
+		display: grid;
+		gap: 1.5rem;
+	}
+	.panel {
+		padding: clamp(1.5rem, 4vw, 2.4rem);
+		scroll-margin-top: 6rem;
+	}
+	.panel-head {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 1rem;
+		padding-bottom: 1.2rem;
+		border-bottom: 1px solid var(--line);
+	}
+	.panel-name {
+		font-size: clamp(1.5rem, 3.5vw, 2rem);
+	}
+	.panel-role {
+		margin-top: 0.4rem;
+		font-size: 0.78rem;
+		color: var(--accent);
+		letter-spacing: 0.04em;
+	}
+	.panel-metric {
+		text-align: right;
+	}
+	.panel-metric-value {
+		display: block;
+		font-family: var(--font-sans);
+		font-weight: 700;
+		font-size: 1.8rem;
+		line-height: 1;
+	}
+	.panel-metric-label {
+		font-size: 0.68rem;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--muted);
+	}
+	.panel-body {
+		display: grid;
+		gap: 0.9rem;
+		margin-top: 1.3rem;
+		color: var(--muted);
+		font-size: 1.02rem;
+		max-width: 70ch;
+	}
+	.panel-cols {
+		display: grid;
+		gap: 1.6rem;
+		margin-top: 1.6rem;
+		grid-template-columns: 1fr;
+	}
+	@media (min-width: 720px) {
+		.panel-cols {
+			grid-template-columns: 1.4fr 1fr;
+		}
+	}
+	.panel-sub {
+		font-size: 0.72rem;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--muted);
+		margin-bottom: 0.9rem;
+	}
+	.panel-highlights {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 0.6rem;
+	}
+	.panel-highlights li {
+		position: relative;
+		padding-left: 1.4rem;
+		color: var(--fg);
+		font-size: 0.96rem;
+	}
+	.panel-highlights li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.55em;
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		background: var(--accent);
+	}
+	.panel-links {
+		margin-top: 1.1rem;
+		display: grid;
+		gap: 0.6rem;
+	}
+	.projects-foot {
+		margin-top: 2.5rem;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+	}
+	.projects-foot p {
+		color: var(--muted);
+		font-size: 0.8rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+	}
+	.projects-foot .hero-actions {
+		justify-content: center;
+	}
+</style>
