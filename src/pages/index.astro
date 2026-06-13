@@ -4,7 +4,13 @@ import Reveal from '../components/Reveal.tsx';
 import SectionHeading from '../components/SectionHeading.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import Icon from '../components/Icon.astro';
-import { contactLinks, projects, skills, recognition, education } from '../data/site';
+import {
+	contactLinks,
+	projects,
+	skills,
+	recognition,
+	education
+} from '../data/site';
 
 const featured = projects.filter(p => p.featured);
 ---
@@ -12,9 +18,7 @@ const featured = projects.filter(p => p.featured);
 <Base>
 	<section class="hero container" id="top">
 		<Reveal client:load>
-			<span class="eyebrow">
-				Crllect
-			</span>
+			<span class="eyebrow"> Crllect </span>
 		</Reveal>
 
 		<Reveal client:load delay={0.08}>
@@ -36,9 +40,7 @@ const featured = projects.filter(p => p.featured);
 		</Reveal>
 
 		<Reveal client:load delay={0.24}>
-			<p class="hero-sub mono">
-				Cambridge, MA
-			</p>
+			<p class="hero-sub mono">Cambridge, MA</p>
 		</Reveal>
 
 		<Reveal client:load delay={0.32}>
@@ -70,10 +72,11 @@ const featured = projects.filter(p => p.featured);
 							developer in Cambridge, MA, focused on building
 							products people actually use. I'm{' '}
 							<strong>
-								co-owner and a developer at Night Network</strong>, a privacy- and access-focused web
-							organization that partners with TitaniumNetwork and
-							serves{' '}
-							<strong>hundreds of thousands of users a day</strong>
+								co-owner and a developer at Night Network</strong
+							>, a privacy- and access-focused web organization
+							that partners with TitaniumNetwork and serves{' '}
+							<strong>hundreds of thousands of users a day</strong
+							>
 							at peak.
 						</p>
 					</Reveal>
@@ -82,10 +85,13 @@ const featured = projects.filter(p => p.featured);
 							Most of my work blends careful frontend craft with
 							the backend and infrastructure to run it at scale. I
 							care a lot about UI/UX, performance, and shipping
-							things that feel finished. My day-to-day stack is{' '}
+							things that feel finished. My day-to-day stack is{
+								' '
+							}
 							<strong>
-								Astro, TypeScript, Tailwind, and Bun</strong>, and I lean into React/Preact when a
-							project needs it.
+								Astro, TypeScript, Tailwind, and Bun</strong
+							>, and I lean into React/Preact when a project needs
+							it.
 						</p>
 					</Reveal>
 					<Reveal client:visible delay={0.12}>

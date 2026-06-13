@@ -36,12 +36,20 @@ const iconFor = (kind: string) => {
 						<li>
 							<a
 								href={l.href}
-								target={l.kind === 'email' ? undefined : '_blank'}
-								rel={l.kind === 'email' ? undefined : 'noreferrer'}
+								target={
+									l.kind === 'email' ? undefined : '_blank'
+								}
+								rel={
+									l.kind === 'email'
+										? undefined
+										: 'noreferrer'
+								}
 							>
 								<Icon name={iconFor(l.kind)} size={16} />
 								<span>{l.label}</span>
-							<span class="chev"><Icon name="chevron-right" size={11} /></span>
+								<span class="chev">
+									<Icon name="chevron-right" size={11} />
+								</span>
 							</a>
 						</li>
 					))
@@ -55,13 +63,17 @@ const iconFor = (kind: string) => {
 				<li>
 					<a href="/projects">
 						Projects
-						<span class="chev"><Icon name="chevron-right" size={11} /></span>
+						<span class="chev"
+							><Icon name="chevron-right" size={11} /></span
+						>
 					</a>
 				</li>
 				<li>
 					<a href="/contact">
 						Contact
-						<span class="chev"><Icon name="chevron-right" size={11} /></span>
+						<span class="chev"
+							><Icon name="chevron-right" size={11} /></span
+						>
 					</a>
 				</li>
 			</ul>

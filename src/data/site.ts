@@ -129,7 +129,10 @@ export const projects: Project[] = [
 		],
 		tags: ['Next.js', 'React', 'TypeScript', 'Tailwind', 'Framer Motion'],
 		links: [
-			{ label: 'titaniumnetwork.org', href: 'https://titaniumnetwork.org' },
+			{
+				label: 'titaniumnetwork.org',
+				href: 'https://titaniumnetwork.org'
+			},
 			{
 				label: 'github.com/titaniumnetwork-dev/Oxide',
 				href: 'https://github.com/titaniumnetwork-dev/Oxide'
@@ -143,9 +146,9 @@ export const projects: Project[] = [
 		role: 'Developer · Maintainer',
 		period: '2024 — Present',
 		summary:
-			'An open-source, modern frontend for my school district\'s Aspen grade system.',
+			"An open-source, modern frontend for my school district's Aspen grade system.",
 		description: [
-			'Aspine is an open-source, modern frontend for my school district\'s Aspen student information system — a much nicer way for students to view grades than the stock interface.',
+			"Aspine is an open-source, modern frontend for my school district's Aspen student information system — a much nicer way for students to view grades than the stock interface.",
 			'I work on the v3 rewrite. The project is currently dormant and being picked back up.'
 		],
 		highlights: [
@@ -256,13 +259,13 @@ export const recognition: Recognition[] = [
 	},
 	{
 		title: 'Most technically complex project',
-		org: 'Hack Club Wonderland \'24',
+		org: "Hack Club Wonderland '24",
 		period: '2024',
 		note: '48-hour constrained build hackathon.'
 	},
 	{
 		title: 'Participant',
-		org: 'MIT Blueprint \'25',
+		org: "MIT Blueprint '25",
 		period: '2025',
 		note: 'Weekend learnathon & hackathon for high-schoolers.'
 	},

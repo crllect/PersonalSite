@@ -68,7 +68,11 @@ const MobileNav = ({
 								>
 									{l.label}
 									{l.external ? (
-										<ArrowUpRight size={15} strokeWidth={2} aria-hidden="true" />
+										<ArrowUpRight
+											size={15}
+											strokeWidth={2}
+											aria-hidden="true"
+										/>
 									) : null}
 								</a>
 							</li>

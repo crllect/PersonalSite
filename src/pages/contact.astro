@@ -50,8 +50,14 @@ const trailingIcon = (kind: string) => {
 							<a
 								class="glow-card contact-row"
 								href={l.href}
-								target={l.kind === 'discord' ? undefined : '_blank'}
-								rel={l.kind === 'discord' ? undefined : 'noreferrer'}
+								target={
+									l.kind === 'discord' ? undefined : '_blank'
+								}
+								rel={
+									l.kind === 'discord'
+										? undefined
+										: 'noreferrer'
+								}
 							>
 								<span class="contact-icon">
 									<Icon name={iconFor(l.kind)} size={20} />
@@ -71,9 +77,7 @@ const trailingIcon = (kind: string) => {
 		</ul>
 
 		<Reveal client:visible>
-			<p class="contact-note mono">
-				Based in Cambridge, MA.
-			</p>
+			<p class="contact-note mono">Based in Cambridge, MA.</p>
 		</Reveal>
 	</section>
 </Base>

@@ -10,7 +10,7 @@ import {
 	Moon,
 	Sparkles,
 	ChevronRight,
-	Triangle,
+	Triangle
 } from 'lucide-preact';
 import { fetchBrandSvg } from '../lib/svgl';
 
@@ -49,27 +49,29 @@ const lucideMap: Partial<Record<IconName, any>> = {
 	moon: Moon,
 	sparkles: Sparkles,
 	'chevron-right': ChevronRight,
-	triangle: Triangle,
+	triangle: Triangle
 };
 
-const svglTitles: Partial<Record<IconName, string>> = {
-	github: 'GitHub',
-	gitlab: 'GitLab',
-	discord: 'Discord',
+const svglTitles: Partial<Record<IconName, 'github' | 'gitlab' | 'discord'>> = {
+	github: 'github',
+	gitlab: 'gitlab',
+	discord: 'discord'
 };
 
 const LucideIcon = lucideMap[name];
-const brandTitle = svglTitles[name];
-const brandSvg = brandTitle ? await fetchBrandSvg(brandTitle, size, className) : null;
+const brandKey = svglTitles[name];
+const brandSvg = brandKey ? fetchBrandSvg(brandKey, size, className) : null;
 ---
 
-{LucideIcon ? (
-	<LucideIcon
-		size={size}
-		strokeWidth={1.75}
-		class={className}
-		aria-hidden="true"
-	/>
-) : brandSvg ? (
-	<Fragment set:html={brandSvg} />
-) : null}
+{
+	LucideIcon ? (
+		<LucideIcon
+			size={size}
+			strokeWidth={1.75}
+			class={className}
+			aria-hidden="true"
+		/>
+	) : brandSvg ? (
+		<Fragment set:html={brandSvg} />
+	) : null
+}
