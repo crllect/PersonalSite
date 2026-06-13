@@ -14,12 +14,12 @@ interface Props {
 
 const {
 	title,
-	description = `Leonardo Glorioso — Full-stack web developer in Cambridge, MA. Co-owner and developer at Night Network.`
+	description = `Crllect's Portfolio`
 } = Astro.props;
 
 const pageTitle = title
-	? `${title} · Leonardo Glorioso`
-	: `Leonardo Glorioso — Full-stack web developer`;
+	? `/${title}`
+	: `crllect.dev`;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
