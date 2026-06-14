@@ -12,14 +12,9 @@ interface Props {
 	description?: string;
 }
 
-const {
-	title,
-	description = `Crllect's Portfolio`
-} = Astro.props;
+const { title, description = `Crllect's Portfolio` } = Astro.props;
 
-const pageTitle = title
-	? `/${title}`
-	: `crllect.dev`;
+const pageTitle = title ? `/${title}` : `crllect.dev`;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
@@ -119,6 +114,7 @@ const personSchema = {
 					.catch(() => {});
 			});
 		</script>
+
 
 	</body>
 </html>

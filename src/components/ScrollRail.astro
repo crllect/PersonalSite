@@ -47,6 +47,7 @@ import Icon from './Icon.astro';
 		top: 0;
 		height: 0;
 		background: var(--accent);
+		box-shadow: 0 0 4px var(--accent);
 	}
 
 	.trackBottom {
@@ -63,6 +64,7 @@ import Icon from './Icon.astro';
 		height: var(--thumb-size);
 		transform: translate(-50%, -50%) rotate(180deg);
 		color: var(--accent);
+		filter: drop-shadow(0 0 4px var(--accent));
 	}
 
 	@media (max-width: 1200px) {
@@ -94,7 +96,8 @@ import Icon from './Icon.astro';
 
 			const styles = getComputedStyle(inner);
 			const thumbSize = thumb.offsetHeight || 22;
-			const gap = parseFloat(styles.getPropertyValue('--track-gap')) || 16;
+			const gap =
+				parseFloat(styles.getPropertyValue('--track-gap')) || 16;
 			const h = inner.clientHeight;
 
 			const min = thumbSize / 2;
