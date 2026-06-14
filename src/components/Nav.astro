@@ -77,11 +77,6 @@ const isActive = (href: string) =>
 			border-color 0.3s ease,
 			backdrop-filter 0.3s ease;
 	}
-	.site-header.is-scrolled {
-		background: color-mix(in oklab, var(--bg) 72%, transparent);
-		backdrop-filter: blur(16px);
-		border-bottom-color: var(--line);
-	}
 	.nav-inner {
 		display: flex;
 		align-items: center;
@@ -109,6 +104,11 @@ const isActive = (href: string) =>
 		display: none;
 	}
 	@media (min-width: 768px) {
+		.site-header.is-scrolled {
+			background: color-mix(in oklab, var(--bg) 72%, transparent);
+			backdrop-filter: blur(16px);
+			border-bottom-color: var(--line);
+		}
 		.nav-links {
 			display: block;
 		}
